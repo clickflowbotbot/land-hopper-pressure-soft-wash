@@ -7,7 +7,7 @@
     --gray: #666666;
     --shadow: 0 4px 15px rgba(0,0,0,0.1);
     --radius: 8px;
-    --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-main: 'Montserrat', sans-serif;
 }
 
 *, *::before, *::after {
@@ -37,6 +37,7 @@ nav {
     background: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     height: 80px;
+    transition: all 0.3s ease;
 }
 
 .nav-content {
@@ -102,17 +103,17 @@ nav {
     background-image: url('https://ytttxtzoazhogljousvc.supabase.co/storage/v1/object/public/site-assets/ab1fa30c-2785-49d0-af5e-40b6a8e4aa30/hero.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     color: var(--white);
+    text-align: left;
 }
 
-#hero::before, #cta-banner::before {
+#hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 0;
 }
 
 .hero-content {
@@ -146,8 +147,9 @@ nav {
     font-weight: 700;
     font-size: 1.1rem;
     border-radius: var(--radius);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
     transition: transform 0.3s, background 0.3s;
+    border: none;
+    cursor: pointer;
 }
 
 .cta-button:hover {
@@ -185,10 +187,10 @@ nav {
 /* Services */
 .section-padding {
     padding: 100px 0;
+    text-align: center;
 }
 
 .section-title {
-    text-align: center;
     margin-bottom: 60px;
 }
 
@@ -209,6 +211,7 @@ nav {
     overflow: hidden;
     box-shadow: var(--shadow);
     transition: transform 0.3s;
+    text-align: left;
 }
 
 .service-card:hover {
@@ -232,12 +235,13 @@ nav {
 
 .about-flex {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 60px;
 }
 
 .about-content {
     flex: 1;
+    text-align: left;
 }
 
 .map-container {
@@ -246,6 +250,7 @@ nav {
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
+    background: #eee;
 }
 
 /* Testimonials */
@@ -256,10 +261,11 @@ nav {
 }
 
 .review-card {
-    background: var(--light);
+    background: var(--white);
     padding: 30px;
     border-radius: var(--radius);
-    position: relative;
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .stars {
@@ -274,12 +280,22 @@ nav {
     min-height: 60vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     background-image: url('https://ytttxtzoazhogljousvc.supabase.co/storage/v1/object/public/site-assets/ab1fa30c-2785-49d0-af5e-40b6a8e4aa30/footer.png');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
     color: var(--white);
     padding: 80px 0;
+}
+
+#cta-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
 }
 
 #cta-banner .container {
@@ -288,7 +304,7 @@ nav {
 }
 
 #cta-banner h2 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 20px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.7);
 }
@@ -311,6 +327,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     margin-bottom: 60px;
+    text-align: left;
 }
 
 .footer-logo {
@@ -318,6 +335,7 @@ footer {
     font-weight: 800;
     margin-bottom: 20px;
     display: block;
+    color: var(--primary);
 }
 
 .footer-info p {
@@ -373,8 +391,22 @@ footer {
         flex-direction: column;
     }
     
-    #hero, #cta-banner {
+    .map-container {
+        width: 100%;
+        height: 300px;
+    }
+
+    #hero {
         text-align: center;
+        min-height: 70vh !important;
+    }
+
+    .hero-rating {
+        justify-content: center;
+    }
+    
+    #cta-banner {
+        min-height: 50vh !important;
     }
 }
 
@@ -388,23 +420,9 @@ section, header, footer, nav { margin: 0; }
   background-repeat: no-repeat;
   background-attachment: scroll !important;
   margin: 0;
-  position: relative;
 }
 #hero { min-height: 100vh; }
 #cta-banner { min-height: 60vh; }
-/* Enforce readable overlay on background-image sections */
-#hero::before, #cta-banner::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 0;
-  pointer-events: none;
-}
-#hero > *, #cta-banner > * { position: relative; z-index: 1; }
-#hero, #cta-banner { color: #ffffff; }
-#hero *, #cta-banner * { color: inherit; }
-#hero a, #cta-banner a, #hero button, #cta-banner button { color: inherit; }
 @media (max-width: 767px) {
   #hero { min-height: 70vh !important; }
   #cta-banner { min-height: 50vh !important; }
